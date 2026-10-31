@@ -1,0 +1,30 @@
+<!-- 固定字串不需要額外的 Property Binding 語法 -->
+<a routerLink="/books/new">➕ 新增書籍</a>
+<h2>📚 書籍列表</h2>
+<input #keywordInput type="text" placeholder="請輸入書名..." (input)="searchKeyword.set(keywordInput.value)">
+<!-- <input type="text" placeholder="請輸入書名..." (input)="onSearch($event)"> -->
+<br/>
+<!-- <button (click)="createBook()">➕ 新增書籍</button> 改用RouterLink導向-->
+@for (book of filteredBooks(); track book.id) {
+    <div class="book-card">
+        <img [src]="book.imageUrl" [alt]="book.title">
+
+        <div class="book-info">
+            <h3>{{book.title}}</h3>
+            <p>作者: {{book.author}}</p>
+            <p>價格: {{book.price}}</p>
+            <p>出版日期: {{book.publishDate}}</p>
+            <p>狀態: {{book.bookStatus}}</p>
+
+            <!-- 透過JavaScript 陣列運算式指定「點擊後要前往哪裡」, 開頭的 / 表示從應用程式的根路徑開始
+                 如果按鈕位於 <form> 之內，而沒有明確指定 type，一般 HTML 規則會讓它預設為提交按鈕。點擊後可能意外觸發表單提交，因此養成習慣把type寫出來
+                 Router + ID 的寫法好處: 可依網址重新載入，可分享編輯網址，但需要額外查詢成本
+                 重新整理 Router 不一定非得重新查詢 API，也可以先從 BookService 共用的 Signal 中尋找書籍，找到後直接使用；找不到時，再呼叫 getBook(id)
+                 原本只靠 selectedBook 的方式，如果重新整理，記憶體中的選取狀態通常就會消失-->
+            <button type="button" [routerLink]="['/books/edit', book.id]">編輯</button>
+            <!-- <button (click)="editBook(book)">編輯</button> 改用RouterLink導向-->
+            <button (click)="deleteBook(book.id)">刪除</button>
+            <!-- <button (click)="getBook(book.id)">查閱</button> 測試學習調用this.bookService.getBook(id)-->
+        </div>
+    </div>
+}

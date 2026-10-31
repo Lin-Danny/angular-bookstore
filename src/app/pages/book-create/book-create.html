@@ -1,0 +1,37 @@
+<h2>新增書籍</h2>
+
+<label>書名</label>
+<input #titleInput (input)="title.set(titleInput.value)">
+
+<br/>
+<label>作者</label>
+<input #authorInput (input)="author.set(authorInput.value)">
+
+<br/>
+<label>圖片來源</label>
+<input #imageUrlInput (input)="imageUrl.set(imageUrlInput.value)">
+
+<br/>
+<label>出版日期</label>
+<input type="date" #publishDateInput (input)="publishDate.set(publishDateInput.value)">
+
+<br/>
+<label>價格</label>
+<input type="number" #priceInput (input)="price.set(+priceInput.value)">
+
+<br/>
+<label>書本狀態</label>
+<input #bookStatusInput (input)="bookStatus.set(bookStatusInput.value)">
+
+<br/>
+<button (click)="save()">新增</button>
+
+<!-- <hr>
+<p>{{book() | json}}</p> -->
+<!-- <h3>預覽</h3>
+<p>書名: {{title()}}</p>
+<p>作者: {{author()}}</p>
+<p>圖片來源: {{imageUrl()}}</p>
+<p>出版日期: {{publishDate()}}</p>
+<p>價格: {{price()}}</p>
+<p>書本狀態: {{bookStatus()}}</p> -->

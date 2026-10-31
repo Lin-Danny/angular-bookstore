@@ -1,0 +1,23 @@
+.book-card{
+    display:flex;
+    gap:20px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:16px;
+    margin-bottom:20px;
+    align-items:center;
+}
+
+.book-card img{
+    width:120px;
+    height:160px;
+    object-fit:cover;
+}
+
+.book-info{
+    flex:1;
+}
+
+.book-info h3{
+    margin-top:0;
+}

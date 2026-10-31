@@ -1,0 +1,54 @@
+@if(errorMessage()){
+    <p class="error-message">{{errorMessage()}}</p>
+}
+
+@if(book()){
+    <h2>修改書籍</h2>
+}@else {
+    <h2>新增書籍</h2>
+}
+<label>書名</label>
+<input #titleInput [value]="title()" (input)="title.set(titleInput.value)"/>
+<br/>
+<label>作者</label>
+<input #authorInput [value]="author()" (input)="author.set(authorInput.value)"/>
+<br/>
+<label>圖片</label>
+<input #imageUrlInput [value]="imageUrl()" (input)="imageUrl.set(imageUrlInput.value)"/>
+<br/>
+<label>出版日期</label>
+<input type="date" #publishDateInput [value]="publishDate()" (input)="publishDate.set(publishDateInput.value)"/>
+<br/>
+<label>價格</label>
+<input type="number" #priceInput [value]="price()" (input)="price.set(+priceInput.value)"/>
+<br/>
+<label>狀態</label>
+<input #bookStatusInput [value]="bookStatus()" (input)="bookStatus.set(bookStatusInput.value)"/>
+<br/>
+<button type="button" [disabled]="isSaving()" (click)="save()">{{isSaving() ? '儲存中' : '儲存'}}</button>  <!--避免儲存時API回應較久，使用者連續點擊按鈕-->
+<!-- <button type="button" (click)="save()">儲存</button> -->
+
+<!--  修改成Create + Update 共用的 Form
+@if(book(); as currentBook){
+    <label>書名</label>
+    <input #titleInput [value]="title()" (input)="title.set(titleInput.value)"/>
+    <br/>
+    <label>作者</label>
+    <input #authorInput [value]="author()" (input)="author.set(authorInput.value)"/>
+    <br/>
+    <label>圖片</label>
+    <input #imageUrlInput [value]="imageUrl()" (input)="imageUrl.set(imageUrlInput.value)"/>
+    <br/>
+    <label>出版日期</label>
+    <input type="date" #publishDateInput [value]="publishDate()" (input)="publishDate.set(publishDateInput.value)"/>
+    <br/>
+    <label>價格</label>
+    <input type="number" #priceInput [value]="price()" (input)="price.set(+priceInput.value)"/>
+    <br/>
+    <label>狀態</label>
+    <input #bookStatusInput [value]="bookStatus()" (input)="bookStatus.set(bookStatusInput.value)"/>
+    <br/>
+    <button type="button" (click)="save()">儲存</button>
+}@else{
+    <p>請從書籍列表選擇一本書</p>
+} -->
